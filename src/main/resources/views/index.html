@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="pl">
+{% include "head.html" %}
+<body>
+<span>
+    {% for city in cities %}
+    <a href="{{ city.slug }}.html">{{ city.name }}</a>
+    {% endfor %}
+</span>
+{% include "footer.html" %}
+</body>
+</html>

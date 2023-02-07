@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl">
+{% include "head.html" %}
+<body>
+<h1>Wyniki {{ cityName }}</h1>
+<table>
+    <thead>
+        <td>Ikona</td>
+        <td>Nazwa</td>
+        <td>Procent</td>
+        <td>Rozwiązane</td>
+        <td>Wszyskie</td>
+    </thead>
+    {% for questName, questStats in result %}
+    {% set quest = quests[questName] %}
+    <tr>
+        <td>
+            <img
+                height="64px"
+                width="64px"
+                src="icons/{{ quest.iconFilename }}"
+                alt="{{ questName }}"
+                title="{{ questName }}"
+            />
+        </td>
+        <td>{{ questName }}</td>
+        <td>{{ "%d"|format(questStats.ratio * 100) }}%</td>
+        <td>{{ questStats.solved }}</td>
+        <td>{{ questStats.all }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% include "footer.html" %}
+</body>
+</html>
