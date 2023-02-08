@@ -12,7 +12,7 @@ interface Quest {
 // https://github.com/streetcomplete/StreetComplete/blob/master/app/src/main/java/de/westnordost/streetcomplete/quests/bike_parking_capacity/AddBikeParkingCapacity.kt
 object BikeParkingCapacityQuest : Quest {
     override fun allFeatures(features: Features<Feature>): Features<Feature> =
-        features.select("nw[amenity=bicycle_parking][access!~'(private|no)'][bicycle_parking!=floor]")
+        features.select("nwa[amenity=bicycle_parking][access!~'(private|no)'][bicycle_parking!=floor]")
 
     override fun solvedFeatures(features: Features<Feature>): Features<Feature> =
         features.select("*[capacity]")
@@ -23,7 +23,7 @@ object BikeParkingCapacityQuest : Quest {
 // https://github.com/streetcomplete/StreetComplete/blob/master/app/src/main/java/de/westnordost/streetcomplete/quests/bike_parking_cover/AddBikeParkingCover.kt
 object BikeParkingCoverQuest : Quest {
     override fun allFeatures(features: Features<Feature>): Features<Feature> =
-        features.select("nw[amenity=bicycle_parking][access!~'(private|no)'][bicycle_parking!~'(shed|lockers|building)']")
+        features.select("nwa[amenity=bicycle_parking][access!~'(private|no)'][bicycle_parking!~'(shed|lockers|building)']")
 
     override fun solvedFeatures(features: Features<Feature>): Features<Feature> =
         features.select("*[covered]")
@@ -34,7 +34,7 @@ object BikeParkingCoverQuest : Quest {
 // https://github.com/streetcomplete/StreetComplete/blob/master/app/src/main/java/de/westnordost/streetcomplete/quests/bike_parking_type/AddBikeParkingType.kt
 object BikeParkingTypeQuest : Quest {
     override fun allFeatures(features: Features<Feature>): Features<Feature> =
-        features.select("nw[amenity=bicycle_parking][access!~'(private|no)']")
+        features.select("nwa[amenity=bicycle_parking][access!~'(private|no)']")
 
     override fun solvedFeatures(features: Features<Feature>): Features<Feature> =
         features.select("*[bicycle_parking]")
@@ -45,7 +45,7 @@ object BikeParkingTypeQuest : Quest {
 // https://github.com/streetcomplete/StreetComplete/blob/master/app/src/main/java/de/westnordost/streetcomplete/quests/bike_rental_capacity/AddBikeRentalCapacity.kt
 object BikeRentalCapacityQuest : Quest {
     override fun allFeatures(features: Features<Feature>): Features<Feature> =
-        features.select("nw[amenity=bicycle_rental][access!~'(private|no)'][bicycle_rental=docking_station]")
+        features.select("nwa[amenity=bicycle_rental][access!~'(private|no)'][bicycle_rental=docking_station]")
 
     override fun solvedFeatures(features: Features<Feature>): Features<Feature> =
         features.select("*[capacity]")
@@ -56,7 +56,7 @@ object BikeRentalCapacityQuest : Quest {
 // https://github.com/streetcomplete/StreetComplete/blob/master/app/src/main/java/de/westnordost/streetcomplete/quests/bike_rental_type/AddBikeRentalType.kt
 object BikeRentalTypeQuest : Quest {
     override fun allFeatures(features: Features<Feature>): Features<Feature> =
-        features.select("nw[amenity=bicycle_rental][access!~'(private|no)'][!shop]")
+        features.select("nwa[amenity=bicycle_rental][access!~'(private|no)'][!shop]")
 
     override fun solvedFeatures(features: Features<Feature>): Features<Feature> =
         features.select("*[bicycle_rental][bicycle_rental!=yes]")
@@ -66,7 +66,7 @@ object BikeRentalTypeQuest : Quest {
 
 abstract class BusStopQuest : Quest {
     override fun allFeatures(features: Features<Feature>): Features<Feature> =
-        features.select("nw[public_transport=platform],nw[highway=bus_stop][public_transport!=stop_position][physically_present!=no]")
+        features.select("nwa[public_transport=platform],nwa[highway=bus_stop][public_transport!=stop_position][physically_present!=no]")
 }
 
 // https://github.com/streetcomplete/StreetComplete/blob/master/app/src/main/java/de/westnordost/streetcomplete/quests/bus_stop_bench/AddBenchStatusOnBusStop.kt
@@ -120,8 +120,150 @@ object BusStopShelterQuest : BusStopQuest() {
     override val iconFilename = "ic_quest_bus_stop_shelter.xml.svg"
 }
 
+// https://github.com/streetcomplete/StreetComplete/blob/master/app/src/main/java/de/westnordost/streetcomplete/quests/diet_type/AddHalal.kt
+object DietHalalQuest : Quest {
+    override fun allFeatures(features: Features<Feature>): Features<Feature> =
+        features
+            .select("na[amenity~'(restaurant|cafe|fast_food|ice_cream|food_court)'][food!=no],na[shop~'(butcher|supermarket|ice_cream|convenience)']")
+            .select("*[diet:vegan!=only]")
+
+    override fun solvedFeatures(features: Features<Feature>): Features<Feature> =
+        features.select("*[diet:halal~'.*']")
+
+    override val iconFilename = "ic_quest_halal.xml.svg"
+}
+
+// https://github.com/streetcomplete/StreetComplete/blob/master/app/src/main/java/de/westnordost/streetcomplete/quests/diet_type/AddKosher.kt
+object DietKosherQuest : Quest {
+    override fun allFeatures(features: Features<Feature>): Features<Feature> = features
+        .select(
+            "na[amenity~'(restaurant|cafe|fast_food|ice_cream|food_court)'][food!=no]," +
+                    "na[amenity~'(pub|nightclub|biergarten|bar)'][food=yes]," +
+                    "na[shop~'(butcher|supermarket|ice_cream|convenience)']"
+        )
+
+    override fun solvedFeatures(features: Features<Feature>): Features<Feature> =
+        features.select("*[diet:kosher~'.*']")
+
+    override val iconFilename = "ic_quest_kosher.xml.svg"
+}
+
+// https://github.com/streetcomplete/StreetComplete/blob/master/app/src/main/java/de/westnordost/streetcomplete/quests/diet_type/AddVegan.kt
+object DietVeganQuest : Quest {
+    override fun allFeatures(features: Features<Feature>): Features<Feature> = features
+        .select(
+            "na[amenity~'(restaurant|cafe|fast_food|ice_cream|food_court)'][food!=no]," +
+                    "na[diet:vegetarian]," +
+                    "na[amenity~'(pub|nightclub|biergarten|bar)'][food=yes]"
+        )
+
+    override fun solvedFeatures(features: Features<Feature>): Features<Feature> =
+        features.select("*[diet:vegan~'.*']")
+
+    override val iconFilename = "ic_quest_restaurant_vegan.xml.svg"
+}
+
+// https://github.com/streetcomplete/StreetComplete/blob/master/app/src/main/java/de/westnordost/streetcomplete/quests/diet_type/AddVegetarian.kt
+object DietVegetarianQuest : Quest {
+    override fun allFeatures(features: Features<Feature>): Features<Feature> = features
+        .select(
+            "na[amenity~'(restaurant|cafe|fast_food|ice_cream|food_court)'][food!=no]," +
+                    "na[amenity~'(pub|nightclub|biergarten|bar)'][food=yes]"
+        ).select("*[diet:vegan!=only]")
+
+    override fun solvedFeatures(features: Features<Feature>): Features<Feature> =
+        features.select("*[diet:vegetarian~'.*']")
+
+    override val iconFilename = "ic_quest_restaurant_vegetarian.xml.svg"
+}
+
+// https://github.com/streetcomplete/StreetComplete/blob/master/app/src/main/java/de/westnordost/streetcomplete/quests/building_levels/AddBuildingLevels.kt
+object BuildingLevelQuest : Quest {
+
+    private val BUILDINGS_WITH_LEVELS = arrayOf(
+        "house", "residential", "apartments", "detached", "terrace", "dormitory", "semi",
+        "semidetached_house", "bungalow", "school", "civic", "college", "university", "public",
+        "hospital", "kindergarten", "transportation", "train_station", "hotel", "retail",
+        "commercial", "office", "manufacture", "parking", "farm",
+        "cabin"
+    )
+
+    override fun allFeatures(features: Features<Feature>): Features<Feature> = features
+        .select("a[building~'(${BUILDINGS_WITH_LEVELS.joinToString("|")})'][!man_made][location!=underground][ruins!=yes]")
+
+    override fun solvedFeatures(features: Features<Feature>): Features<Feature> =
+        features.select("*[building:levels]")
+
+    override val iconFilename = "ic_quest_building_levels.xml.svg"
+}
+
+// https://github.com/streetcomplete/StreetComplete/blob/master/app/src/main/java/de/westnordost/streetcomplete/quests/building_type/AddBuildingType.kt
+object BuildingType : Quest {
+    private val forbiddenTags = listOf(
+        "man_made",
+        "historic",
+        "military",
+        "power",
+        "tourism",
+        "attraction",
+        "amenity",
+        "leisure",
+        "aeroway",
+        "railway",
+        "craft",
+        "healthcare",
+        "office",
+        "shop",
+        "description",
+        "abandoned",
+        "abandoned:building"
+    )
+
+    override fun allFeatures(features: Features<Feature>): Features<Feature> = features
+        .select("a[building]${forbiddenTags.joinToString("") { "[!$it]" }}[location!=underground][ruins!=yes]")
+
+    override fun solvedFeatures(features: Features<Feature>): Features<Feature> =
+        features.select("*[building!~'(yes|unclassified)']")
+
+    override val iconFilename = "ic_quest_building.xml.svg"
+}
+
+// https://github.com/streetcomplete/StreetComplete/blob/master/app/src/main/java/de/westnordost/streetcomplete/quests/defibrillator/AddIsDefibrillatorIndoor.kt
+object DefibrillatorIndoorQuest : Quest {
+    override fun allFeatures(features: Features<Feature>): Features<Feature>  = features
+        .select("n[emergency=defibrillator][access!~'(private|no)'][!location]")
+
+    override fun solvedFeatures(features: Features<Feature>): Features<Feature> = features.select("*[indoor~'.*']")
+
+    override val iconFilename = "ic_quest_defibrillator.xml.svg"
+}
+
+// https://github.com/streetcomplete/StreetComplete/blob/master/app/src/main/java/de/westnordost/streetcomplete/quests/toilet_availability/AddToiletAvailability.kt
+object ToiletAvailabilityQuest : Quest {
+    override fun allFeatures(features: Features<Feature>): Features<Feature>  = features
+        .select("na[shop~'(mall|department_store)'],nw[highway~'(services|rest_area)'],nw[tourism~'(camp_site|caravan_site)']")
+
+    override fun solvedFeatures(features: Features<Feature>): Features<Feature> = features.select("*[toilets~'.*']")
+
+    override val iconFilename = "ic_quest_toilets.xml.svg"
+}
+
+// https://github.com/streetcomplete/StreetComplete/blob/master/app/src/main/java/de/westnordost/streetcomplete/quests/toilets_fee/AddToiletsFee.kt
+object ToiletsFeeQuest : Quest {
+    override fun allFeatures(features: Features<Feature>): Features<Feature>  = features
+        .select("na[amenity=toilets][access!~'(private|customers)'][!seasonal]")
+
+    override fun solvedFeatures(features: Features<Feature>): Features<Feature> = features.select("*[fee~'.*']")
+
+    override val iconFilename = "ic_quest_toilet_fee.xml.svg"
+}
+
 val quests = listOf(
     BikeParkingCapacityQuest, BikeParkingTypeQuest, BikeParkingCoverQuest,
     BikeRentalCapacityQuest, BikeRentalTypeQuest,
     BusStopBenchQuest, BusStopBinQuest, BusStopLitQuest, BusStopNameQuest, BusStopRefQuest, BusStopShelterQuest,
+    DietHalalQuest, DietKosherQuest, DietVeganQuest, DietVegetarianQuest,
+    BuildingLevelQuest, BuildingType,
+    DefibrillatorIndoorQuest,
+    ToiletAvailabilityQuest, ToiletsFeeQuest,
 )
