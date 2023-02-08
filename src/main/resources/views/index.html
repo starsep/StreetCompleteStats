@@ -4,7 +4,7 @@
 <body>
     <h1>Zadania</h1>
     <span>
-    {% for quest in quests.values() %}
+    {% for quest in quests %}
         <a href="{{ quest.name }}.html">{% include "questIcon.html" %}</a>
     {% endfor %}
     </span>
