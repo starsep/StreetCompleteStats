@@ -8,11 +8,8 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.system.measureTimeMillis
 
-typealias CityName = String
-typealias QuestName = String
-
 data class City(
-    val name: CityName,
+    val name: String,
     val slug: String,
 )
 
@@ -24,22 +21,22 @@ data class QuestStats(
 
 data class OutputData(
     val cities: List<City>,
-    val questResults: Map<QuestName, Map<CityName, QuestStats>>,
-    val cityResults: Map<CityName, Map<QuestName, QuestStats>>,
+    val questResults: Map<Quest, Map<City, QuestStats>>,
+    val cityResults: Map<City, Map<Quest, QuestStats>>,
 )
 
 fun generateData(): OutputData {
     val library = FeatureLibrary("data/poland.gol")
     val cities = library
         .select("a[admin_level=8][population>20000][name!~'(Görlitz|Karviná|Opava|Ostrava|Český Těšín|Trutnov|Zittau|Třinec)']")
-    val cityResults = mutableMapOf<CityName, Map<QuestName, QuestStats>>()
-    val questResults = mutableMapOf<QuestName, MutableMap<CityName, QuestStats>>()
-    for (quest in quests.values) questResults[quest.name()] = mutableMapOf()
-    for (city in cities) {
-        val cityResult = mutableMapOf<QuestName, QuestStats>()
-        val cityName = city.tag("name")
-        for ((questName, quest) in quests) {
-            val cityFeatures = library.`in`(city.bounds())
+    val cityResults = mutableMapOf<City, Map<Quest, QuestStats>>()
+    val questResults = mutableMapOf<Quest, MutableMap<City, QuestStats>>()
+    for (quest in quests) questResults[quest] = mutableMapOf()
+    for (cityFeature in cities) {
+        val city = cityFeature.tag("name").let { City(name=it, slug = it.slugify()) }
+        val cityResult = mutableMapOf<Quest, QuestStats>()
+        for (quest in quests) {
+            val cityFeatures = library.`in`(cityFeature.bounds())
             val allFeatures = quest.allFeatures(cityFeatures)
             val solvedCount = quest.solvedFeatures(allFeatures).count()
             val allCount = allFeatures.count()
@@ -48,10 +45,10 @@ fun generateData(): OutputData {
                 all = allCount,
                 ratio = solvedCount.toDouble() / allCount,
             )
-            cityResult[questName] = questStats
-            questResults[quest.name()]!![cityName] = questStats
+            cityResult[quest] = questStats
+            questResults[quest]!![city] = questStats
         }
-        cityResults[cityName] = cityResult
+        cityResults[city] = cityResult
     }
     return OutputData(
         cities = cities.map { it.tag("name") }.sorted().map { City(name=it, slug = it.slugify()) },
@@ -74,7 +71,7 @@ fun main() {
     val iconsSourceDir = File("icons")
     val iconsOutputDir = File(outputDir, "icons")
     iconsOutputDir.mkdir()
-    for (quest in quests.values) {
+    for (quest in quests) {
         val iconSource = File(iconsSourceDir, quest.iconFilename)
         if (iconSource.exists()) {
             iconSource.copyTo(File(iconsOutputDir, quest.iconFilename), overwrite = true)
@@ -98,17 +95,17 @@ fun main() {
         for (city in data!!.cities) {
             val cityOutput = renderer.render(
                 "city.html", commonContext + mapOf(
-                    "result" to data!!.cityResults[city.name],
-                    "cityName" to city.name,
+                    "result" to data!!.cityResults[city],
+                    "city" to city,
                 )
             )
             File(outputDir, "${city.slug}.html").writeText(cityOutput)
         }
-        for (quest in quests.values) {
+        for (quest in quests) {
             val questOutput = renderer.render(
                 "quest.html", commonContext + mapOf(
                     "quest" to quest,
-                    "result" to data!!.questResults[quest.name()]!!.toList().sortedByDescending { it.second.solved },
+                    "result" to data!!.questResults[quest]!!.toList().sortedByDescending { it.second.solved },
                 )
             )
             File(outputDir, "${quest.name()}.html").writeText(questOutput)

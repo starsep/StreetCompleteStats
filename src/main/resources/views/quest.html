@@ -12,10 +12,9 @@
     <td>Rozwiązane</td>
     <td>Wszyskie</td>
     </thead>
-    {% for questName, questStats in result %}
-    {% set quest = quests[questName] %}
+    {% for city, questStats in result %}
     <tr>
-        <td>{{ questName }}</td>
+        <td><a href="{{ city.slug }}.html">{{ city.name }}</a></td>
         <td>{{ "%d"|format(questStats.ratio * 100) }}%</td>
         <td>{{ questStats.solved }}</td>
         <td>{{ questStats.all }}</td>

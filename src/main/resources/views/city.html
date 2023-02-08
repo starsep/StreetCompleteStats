@@ -2,7 +2,7 @@
 <html lang="pl">
 {% include "head.html" %}
 <body>
-<h1>Wyniki {{ cityName }}</h1>
+<h1>Wyniki {{ city.name }}</h1>
 <table>
     <thead>
         <td>Ikona</td>
@@ -11,11 +11,10 @@
         <td>Rozwiązane</td>
         <td>Wszystkie</td>
     </thead>
-    {% for questName, questStats in result %}
-    {% set quest = quests[questName] %}
+    {% for quest, questStats in result %}
     <tr>
-        <td>{% include "questIcon.html" %}</td>
-        <td>{{ questName }}</td>
+        <td><a href="{{ quest.name }}.html">{% include "questIcon.html" %}</a></td>
+        <td><a href="{{ quest.name }}.html">{{ quest.name }}</a></td>
         <td>{{ "%d"|format(questStats.ratio * 100) }}%</td>
         <td>{{ questStats.solved }}</td>
         <td>{{ questStats.all }}</td>

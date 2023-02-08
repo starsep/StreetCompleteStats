@@ -120,8 +120,8 @@ object BusStopShelterQuest : BusStopQuest() {
     override val iconFilename = "ic_quest_bus_stop_shelter.xml.svg"
 }
 
-val quests: Map<String, Quest> = listOf(
+val quests = listOf(
     BikeParkingCapacityQuest, BikeParkingTypeQuest, BikeParkingCoverQuest,
     BikeRentalCapacityQuest, BikeRentalTypeQuest,
     BusStopBenchQuest, BusStopBinQuest, BusStopLitQuest, BusStopNameQuest, BusStopRefQuest, BusStopShelterQuest,
-).associateBy(Quest::name)
+)
