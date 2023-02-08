@@ -2,11 +2,19 @@
 <html lang="pl">
 {% include "head.html" %}
 <body>
-<span>
+    <h1>Zadania</h1>
+    <span>
+    {% for quest in quests.values() %}
+        <a href="{{ quest.name }}.html">{% include "questIcon.html" %}</a>
+    {% endfor %}
+    </span>
+
+    <h1>Miasta</h1>
+    <span>
     {% for city in cities %}
     <a href="{{ city.slug }}.html">{{ city.name }}</a>
     {% endfor %}
-</span>
+    </span>
 {% include "footer.html" %}
 </body>
 </html>

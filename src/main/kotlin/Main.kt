@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter
 import kotlin.system.measureTimeMillis
 
 typealias CityName = String
+typealias QuestName = String
 
 data class City(
     val name: CityName,
@@ -23,31 +24,39 @@ data class QuestStats(
 
 data class OutputData(
     val cities: List<City>,
-    val results: Map<CityName, Map<String, QuestStats>>
+    val questResults: Map<QuestName, Map<CityName, QuestStats>>,
+    val cityResults: Map<CityName, Map<QuestName, QuestStats>>,
 )
 
 fun generateData(): OutputData {
     val library = FeatureLibrary("data/poland.gol")
-    val cities = library.select("a[admin_level=8][population>20000][name!~'(Görlitz|Karviná|Opava|Ostrava|Český Těšín|Trutnov|Zittau|Třinec)']")
-    val results = mutableMapOf<CityName, Map<String, QuestStats>>()
+    val cities = library
+        .select("a[admin_level=8][population>20000][name!~'(Görlitz|Karviná|Opava|Ostrava|Český Těšín|Trutnov|Zittau|Třinec)']")
+    val cityResults = mutableMapOf<CityName, Map<QuestName, QuestStats>>()
+    val questResults = mutableMapOf<QuestName, MutableMap<CityName, QuestStats>>()
+    for (quest in quests.values) questResults[quest.name()] = mutableMapOf()
     for (city in cities) {
-        val cityResult = mutableMapOf<String, QuestStats>()
+        val cityResult = mutableMapOf<QuestName, QuestStats>()
+        val cityName = city.tag("name")
         for ((questName, quest) in quests) {
             val cityFeatures = library.`in`(city.bounds())
             val allFeatures = quest.allFeatures(cityFeatures)
             val solvedCount = quest.solvedFeatures(allFeatures).count()
             val allCount = allFeatures.count()
-            cityResult[questName] = QuestStats(
+            val questStats = QuestStats(
                 solved = solvedCount,
                 all = allCount,
                 ratio = solvedCount.toDouble() / allCount,
             )
+            cityResult[questName] = questStats
+            questResults[quest.name()]!![cityName] = questStats
         }
-        results[city.tag("name")] = cityResult
+        cityResults[cityName] = cityResult
     }
     return OutputData(
         cities = cities.map { it.tag("name") }.sorted().map { City(name=it, slug = it.slugify()) },
-        results = results,
+        questResults = questResults,
+        cityResults = cityResults,
     )
 }
 
@@ -74,25 +83,35 @@ fun main() {
         }
     }
     runBlocking {
+        val commonContext = mapOf(
+            "startTime" to startTime,
+            "generationSeconds" to generationTime / 1000.0,
+            "quests" to quests,
+        )
         val renderer = Templates(ResourceTemplateProvider("views"), cache = true)
-        val output = renderer.render(
-            "index.html", mapOf(
-                "startTime" to startTime, "generationSeconds" to generationTime / 1000.0,
-                "cities" to data!!.cities
+        val indexOutput = renderer.render(
+            "index.html", commonContext + mapOf(
+                "cities" to data!!.cities,
             )
         )
-        File(outputDir, "index.html").writeText(output)
+        File(outputDir, "index.html").writeText(indexOutput)
         for (city in data!!.cities) {
             val cityOutput = renderer.render(
-                "city.html", mapOf(
-                    "startTime" to startTime,
-                    "generationSeconds" to generationTime / 1000.0,
-                    "result" to data!!.results[city.name],
+                "city.html", commonContext + mapOf(
+                    "result" to data!!.cityResults[city.name],
                     "cityName" to city.name,
-                    "quests" to quests,
                 )
             )
             File(outputDir, "${city.slug}.html").writeText(cityOutput)
+        }
+        for (quest in quests.values) {
+            val questOutput = renderer.render(
+                "quest.html", commonContext + mapOf(
+                    "quest" to quest,
+                    "result" to data!!.questResults[quest.name()]!!.toList().sortedByDescending { it.second.solved },
+                )
+            )
+            File(outputDir, "${quest.name()}.html").writeText(questOutput)
         }
     }
 }
