@@ -5,12 +5,12 @@
 <h1>
     {% include "questIcon.html" %}&nbsp;{{ quest.name }}
 </h1>
-<table>
+<table class="sortable">
     <thead>
     <td>Nazwa</td>
     <td>Procent</td>
     <td>Rozwiązane</td>
-    <td>Wszyskie</td>
+    <td>Wszystkie</td>
     </thead>
     {% for city, questStats in result %}
     <tr>
