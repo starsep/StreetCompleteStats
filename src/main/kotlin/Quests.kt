@@ -326,7 +326,7 @@ object PathSurfaceQuest : Quest {
 }
 
 // https://github.com/streetcomplete/StreetComplete/blob/master/app/src/main/java/de/westnordost/streetcomplete/quests/surface/AddCyclewayPartSurface.kt
-object CyclewaySurfaceQuest : Quest {
+object CyclewayPartSurfaceQuest : Quest {
     override fun allFeatures(features: Features<Feature>): Features<Feature> = features
         .select("w[highway=cycleway],w[highway~'(path|footway)'][bicycle],w[highway=bridleway][bicycle~'(designated|yes)']")
         .select("*[segregated=yes][!sidewalk]")
@@ -340,7 +340,7 @@ object CyclewaySurfaceQuest : Quest {
 }
 
 // https://github.com/streetcomplete/StreetComplete/blob/master/app/src/main/java/de/westnordost/streetcomplete/quests/surface/AddFootwayPartSurface.kt
-object FootwaySurfaceQuest : Quest {
+object FootwayPartSurfaceQuest : Quest {
     override fun allFeatures(features: Features<Feature>): Features<Feature> = features
         .select("w[highway=footway],w[path][foot],w[highway~'(cycleway|bridleway)'][foot]")
         .select("*[segregated=yes][!sidewalk]")
@@ -348,7 +348,7 @@ object FootwaySurfaceQuest : Quest {
         // TODO: .select("*[~'(path|footway|cycleway|bridleway)'!~'link']")
 
     override fun solvedFeatures(features: Features<Feature>): Features<Feature> = features
-        .select("*[footway:surface][footway:surface~'(paved|unpaved)'],*[footway:surface:note],*[note:footway:surface]")
+        .select("*[footway:surface][footway:surface!~'(paved|unpaved)'],*[footway:surface:note],*[note:footway:surface]")
 
     override val iconFilename = "ic_quest_footway_surface.xml.svg"
 }
@@ -361,5 +361,5 @@ val quests = listOf(
     BuildingLevelQuest, BuildingType,
     DefibrillatorIndoorQuest,
     ToiletAvailabilityQuest, ToiletsFeeQuest,
-    RoadSurfaceQuest, SidewalkSurfaceQuest, PathSurfaceQuest, CyclewaySurfaceQuest, FootwaySurfaceQuest,
+    RoadSurfaceQuest, SidewalkSurfaceQuest, PathSurfaceQuest, CyclewayPartSurfaceQuest, FootwayPartSurfaceQuest,
 )
