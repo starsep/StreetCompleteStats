@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.geodesk:geodesk:0.1.4")
+    implementation("com.geodesk:geodesk:0.1.7")
     implementation("com.soywiz.korlibs.korte:korte:3.4.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
     testImplementation(kotlin("test"))
