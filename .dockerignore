@@ -5,3 +5,4 @@ output
 Dockerfile
 .dockerignore
 .idea
+data

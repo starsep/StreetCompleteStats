@@ -6,6 +6,11 @@ Inspired by https://streetcompleteness.haukauntrie.de
 # Docker
 ```
 docker build -t streetcompletestats .
-docker run -it --rm -v "$(pwd)/data:/app/data:ro" -t streetcompletestats
+docker run --rm \
+    -v "$(pwd)/data:/app/data" \
+    --env GITHUB_USERNAME=example \
+    --env GITHUB_TOKEN=12345 \
+    --env TZ=Europe/Warsaw \
+    -t streetcompletestats
 ```
 
