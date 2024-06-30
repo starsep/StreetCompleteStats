@@ -1,0 +1,6 @@
+.git
+output
+Dockerfile
+.dockerignore
+.idea
+data
