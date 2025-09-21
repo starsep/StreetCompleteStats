@@ -21,16 +21,17 @@
             }
             return "en";
         }
-        function setPreferredLanguage() {
-            document.documentElement.lang = preferredLanguage();
+        function translateContent() {
+            const lang = preferredLanguage();
+            document.documentElement.lang = lang;
+            if (lang === "pl") {
+                document.querySelectorAll("[data-pl]").forEach((element) => {
+                    element.textContent = element.getAttribute("data-pl");
+                });
+            }
         }
-        setPreferredLanguage();
+        translateContent();
     </script>
-    <style>
-        *["data-pl"]:lang(pl) {
-            content: attr("data-pl");
-        }
-    </style>
 </head>
 
     <body>
@@ -570,17 +571,17 @@
             </tr>
             
             <tr>
-                <td><a href="cieszyn.html">Cieszyn</a></td>
-                <td>16%</td>
-                <td>2</td>
-                <td>12</td>
-            </tr>
-            
-            <tr>
                 <td><a href="debica.html">Dębica</a></td>
                 <td>11%</td>
                 <td>2</td>
                 <td>18</td>
+            </tr>
+            
+            <tr>
+                <td><a href="cieszyn.html">Cieszyn</a></td>
+                <td>16%</td>
+                <td>2</td>
+                <td>12</td>
             </tr>
             
             <tr>
@@ -745,17 +746,17 @@
             </tr>
             
             <tr>
-                <td><a href="bielawa.html">Bielawa</a></td>
-                <td>0%</td>
-                <td>1</td>
-                <td>210</td>
-            </tr>
-            
-            <tr>
                 <td><a href="zdunska-wola.html">Zduńska Wola</a></td>
                 <td>0%</td>
                 <td>1</td>
                 <td>146</td>
+            </tr>
+            
+            <tr>
+                <td><a href="bielawa.html">Bielawa</a></td>
+                <td>0%</td>
+                <td>1</td>
+                <td>210</td>
             </tr>
             
             <tr>
@@ -822,17 +823,17 @@
             </tr>
             
             <tr>
-                <td><a href="belchatow.html">Bełchatów</a></td>
-                <td>1%</td>
-                <td>1</td>
-                <td>51</td>
-            </tr>
-            
-            <tr>
                 <td><a href="wielun.html">Wieluń</a></td>
                 <td>4%</td>
                 <td>1</td>
                 <td>23</td>
+            </tr>
+            
+            <tr>
+                <td><a href="belchatow.html">Bełchatów</a></td>
+                <td>1%</td>
+                <td>1</td>
+                <td>51</td>
             </tr>
             
             <tr>
@@ -885,17 +886,17 @@
             </tr>
             
             <tr>
-                <td><a href="jaroslaw.html">Jarosław</a></td>
-                <td>25%</td>
-                <td>1</td>
-                <td>4</td>
-            </tr>
-            
-            <tr>
                 <td><a href="przemysl.html">Przemyśl</a></td>
                 <td>5%</td>
                 <td>1</td>
                 <td>17</td>
+            </tr>
+            
+            <tr>
+                <td><a href="jaroslaw.html">Jarosław</a></td>
+                <td>25%</td>
+                <td>1</td>
+                <td>4</td>
             </tr>
             
             <tr>
@@ -941,17 +942,17 @@
             </tr>
             
             <tr>
-                <td><a href="elk.html">Ełk</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>132</td>
-            </tr>
-            
-            <tr>
                 <td><a href="ketrzyn.html">Kętrzyn</a></td>
                 <td>0%</td>
                 <td>0</td>
                 <td>2</td>
+            </tr>
+            
+            <tr>
+                <td><a href="elk.html">Ełk</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>132</td>
             </tr>
             
             <tr>
@@ -1018,13 +1019,6 @@
             </tr>
             
             <tr>
-                <td><a href="ciechanow.html">Ciechanów</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>5</td>
-            </tr>
-            
-            <tr>
                 <td><a href="plonsk.html">Płońsk</a></td>
                 <td>0%</td>
                 <td>0</td>
@@ -1032,17 +1026,24 @@
             </tr>
             
             <tr>
-                <td><a href="wyszkow.html">Wyszków</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>15</td>
-            </tr>
-            
-            <tr>
                 <td><a href="ostrow-mazowiecka.html">Ostrów Mazowiecka</a></td>
                 <td>0%</td>
                 <td>0</td>
                 <td>4</td>
+            </tr>
+            
+            <tr>
+                <td><a href="ciechanow.html">Ciechanów</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>5</td>
+            </tr>
+            
+            <tr>
+                <td><a href="wyszkow.html">Wyszków</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>15</td>
             </tr>
             
             <tr>
@@ -1130,20 +1131,6 @@
             </tr>
             
             <tr>
-                <td><a href="nowa-ruda.html">Nowa Ruda</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>3</td>
-            </tr>
-            
-            <tr>
-                <td><a href="klodzko.html">Kłodzko</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>4</td>
-            </tr>
-            
-            <tr>
                 <td><a href="prudnik.html">Prudnik</a></td>
                 <td>0%</td>
                 <td>0</td>
@@ -1155,6 +1142,20 @@
                 <td>0%</td>
                 <td>0</td>
                 <td>12</td>
+            </tr>
+            
+            <tr>
+                <td><a href="nowa-ruda.html">Nowa Ruda</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>3</td>
+            </tr>
+            
+            <tr>
+                <td><a href="klodzko.html">Kłodzko</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>4</td>
             </tr>
             
             <tr>
@@ -1228,13 +1229,6 @@
             </tr>
             
             <tr>
-                <td><a href="piotrkow-trybunalski.html">Piotrków Trybunalski</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>10</td>
-            </tr>
-            
-            <tr>
                 <td><a href="tomaszow-mazowiecki.html">Tomaszów Mazowiecki</a></td>
                 <td>0%</td>
                 <td>0</td>
@@ -1246,6 +1240,13 @@
                 <td>0%</td>
                 <td>0</td>
                 <td>3</td>
+            </tr>
+            
+            <tr>
+                <td><a href="piotrkow-trybunalski.html">Piotrków Trybunalski</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>10</td>
             </tr>
             
             <tr>
@@ -1404,7 +1405,7 @@
             
         </table>
         <footer>
-    <span data-pl="Początek generowania">Generation start</span>: 2025-09-21 11:01. <span data-pl="Zajęło">Took</span> 16.09
+    <span data-pl="Początek generowania">Generation start</span>: 2025-09-21 11:21. <span data-pl="Zajęło">Took</span> 13.104
     <span data-pl="sekund">seconds</span>.
     <span data-pl="Źródło danych">Data source</span>:
     <a href="https://osm.org/copyright"

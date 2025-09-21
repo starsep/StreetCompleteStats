@@ -21,16 +21,17 @@
             }
             return "en";
         }
-        function setPreferredLanguage() {
-            document.documentElement.lang = preferredLanguage();
+        function translateContent() {
+            const lang = preferredLanguage();
+            document.documentElement.lang = lang;
+            if (lang === "pl") {
+                document.querySelectorAll("[data-pl]").forEach((element) => {
+                    element.textContent = element.getAttribute("data-pl");
+                });
+            }
         }
-        setPreferredLanguage();
+        translateContent();
     </script>
-    <style>
-        *["data-pl"]:lang(pl) {
-            content: attr("data-pl");
-        }
-    </style>
 </head>
 
     <body>
@@ -496,7 +497,7 @@
             
         </table>
         <footer>
-    <span data-pl="Początek generowania">Generation start</span>: 2025-09-21 11:01. <span data-pl="Zajęło">Took</span> 16.09
+    <span data-pl="Początek generowania">Generation start</span>: 2025-09-21 11:21. <span data-pl="Zajęło">Took</span> 13.104
     <span data-pl="sekund">seconds</span>.
     <span data-pl="Źródło danych">Data source</span>:
     <a href="https://osm.org/copyright"

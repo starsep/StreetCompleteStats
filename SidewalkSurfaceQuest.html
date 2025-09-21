@@ -21,16 +21,17 @@
             }
             return "en";
         }
-        function setPreferredLanguage() {
-            document.documentElement.lang = preferredLanguage();
+        function translateContent() {
+            const lang = preferredLanguage();
+            document.documentElement.lang = lang;
+            if (lang === "pl") {
+                document.querySelectorAll("[data-pl]").forEach((element) => {
+                    element.textContent = element.getAttribute("data-pl");
+                });
+            }
         }
-        setPreferredLanguage();
+        translateContent();
     </script>
-    <style>
-        *["data-pl"]:lang(pl) {
-            content: attr("data-pl");
-        }
-    </style>
 </head>
 
     <body>
@@ -542,17 +543,17 @@
             </tr>
             
             <tr>
-                <td><a href="szczecinek.html">Szczecinek</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>1</td>
-            </tr>
-            
-            <tr>
                 <td><a href="gryfino.html">Gryfino</a></td>
                 <td>0%</td>
                 <td>0</td>
                 <td>74</td>
+            </tr>
+            
+            <tr>
+                <td><a href="szczecinek.html">Szczecinek</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>1</td>
             </tr>
             
             <tr>
@@ -647,13 +648,6 @@
             </tr>
             
             <tr>
-                <td><a href="ostroda.html">Ostróda</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>1</td>
-            </tr>
-            
-            <tr>
                 <td><a href="ilawa.html">Iława</a></td>
                 <td>0%</td>
                 <td>0</td>
@@ -665,6 +659,13 @@
                 <td>0%</td>
                 <td>0</td>
                 <td>14</td>
+            </tr>
+            
+            <tr>
+                <td><a href="ostroda.html">Ostróda</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>1</td>
             </tr>
             
             <tr>
@@ -717,13 +718,6 @@
             </tr>
             
             <tr>
-                <td><a href="ciechanow.html">Ciechanów</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
-            
-            <tr>
                 <td><a href="plonsk.html">Płońsk</a></td>
                 <td>0%</td>
                 <td>0</td>
@@ -731,10 +725,10 @@
             </tr>
             
             <tr>
-                <td><a href="wyszkow.html">Wyszków</a></td>
+                <td><a href="ostrow-mazowiecka.html">Ostrów Mazowiecka</a></td>
                 <td>0%</td>
                 <td>0</td>
-                <td>27</td>
+                <td>8</td>
             </tr>
             
             <tr>
@@ -745,10 +739,17 @@
             </tr>
             
             <tr>
-                <td><a href="ostrow-mazowiecka.html">Ostrów Mazowiecka</a></td>
+                <td><a href="ciechanow.html">Ciechanów</a></td>
                 <td>0%</td>
                 <td>0</td>
-                <td>8</td>
+                <td>0</td>
+            </tr>
+            
+            <tr>
+                <td><a href="wyszkow.html">Wyszków</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>27</td>
             </tr>
             
             <tr>
@@ -773,13 +774,6 @@
             </tr>
             
             <tr>
-                <td><a href="bielsk-podlaski.html">Bielsk Podlaski</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>5</td>
-            </tr>
-            
-            <tr>
                 <td><a href="hajnowka.html">Hajnówka</a></td>
                 <td>0%</td>
                 <td>0</td>
@@ -787,7 +781,7 @@
             </tr>
             
             <tr>
-                <td><a href="lubon.html">Luboń</a></td>
+                <td><a href="bielsk-podlaski.html">Bielsk Podlaski</a></td>
                 <td>0%</td>
                 <td>0</td>
                 <td>5</td>
@@ -798,6 +792,13 @@
                 <td>0%</td>
                 <td>0</td>
                 <td>33</td>
+            </tr>
+            
+            <tr>
+                <td><a href="lubon.html">Luboń</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>5</td>
             </tr>
             
             <tr>
@@ -836,13 +837,6 @@
             </tr>
             
             <tr>
-                <td><a href="leszno.html">Leszno</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>12</td>
-            </tr>
-            
-            <tr>
                 <td><a href="polkowice.html">Polkowice</a></td>
                 <td>0%</td>
                 <td>0</td>
@@ -854,6 +848,13 @@
                 <td>0%</td>
                 <td>0</td>
                 <td>1</td>
+            </tr>
+            
+            <tr>
+                <td><a href="leszno.html">Leszno</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>12</td>
             </tr>
             
             <tr>
@@ -899,20 +900,6 @@
             </tr>
             
             <tr>
-                <td><a href="nowa-ruda.html">Nowa Ruda</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>7</td>
-            </tr>
-            
-            <tr>
-                <td><a href="klodzko.html">Kłodzko</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>43</td>
-            </tr>
-            
-            <tr>
                 <td><a href="prudnik.html">Prudnik</a></td>
                 <td>0%</td>
                 <td>0</td>
@@ -941,6 +928,27 @@
             </tr>
             
             <tr>
+                <td><a href="nowa-ruda.html">Nowa Ruda</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>7</td>
+            </tr>
+            
+            <tr>
+                <td><a href="klodzko.html">Kłodzko</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>43</td>
+            </tr>
+            
+            <tr>
+                <td><a href="swarzedz.html">Swarzędz</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>1</td>
+            </tr>
+            
+            <tr>
                 <td><a href="srem.html">Śrem</a></td>
                 <td>0%</td>
                 <td>0</td>
@@ -962,17 +970,17 @@
             </tr>
             
             <tr>
-                <td><a href="swarzedz.html">Swarzędz</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>1</td>
-            </tr>
-            
-            <tr>
                 <td><a href="konin.html">Konin</a></td>
                 <td>0%</td>
                 <td>0</td>
                 <td>7</td>
+            </tr>
+            
+            <tr>
+                <td><a href="kutno.html">Kutno</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>1</td>
             </tr>
             
             <tr>
@@ -987,13 +995,6 @@
                 <td>0%</td>
                 <td>0</td>
                 <td>8</td>
-            </tr>
-            
-            <tr>
-                <td><a href="kutno.html">Kutno</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>1</td>
             </tr>
             
             <tr>
@@ -1123,6 +1124,20 @@
             </tr>
             
             <tr>
+                <td><a href="tomaszow-mazowiecki.html">Tomaszów Mazowiecki</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>6</td>
+            </tr>
+            
+            <tr>
+                <td><a href="opoczno.html">Opoczno</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>50</td>
+            </tr>
+            
+            <tr>
                 <td><a href="belchatow.html">Bełchatów</a></td>
                 <td>0%</td>
                 <td>0</td>
@@ -1141,20 +1156,6 @@
                 <td>0%</td>
                 <td>0</td>
                 <td>8</td>
-            </tr>
-            
-            <tr>
-                <td><a href="tomaszow-mazowiecki.html">Tomaszów Mazowiecki</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>6</td>
-            </tr>
-            
-            <tr>
-                <td><a href="opoczno.html">Opoczno</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>50</td>
             </tr>
             
             <tr>
@@ -1404,7 +1405,7 @@
             
         </table>
         <footer>
-    <span data-pl="Początek generowania">Generation start</span>: 2025-09-21 11:01. <span data-pl="Zajęło">Took</span> 16.09
+    <span data-pl="Początek generowania">Generation start</span>: 2025-09-21 11:21. <span data-pl="Zajęło">Took</span> 13.104
     <span data-pl="sekund">seconds</span>.
     <span data-pl="Źródło danych">Data source</span>:
     <a href="https://osm.org/copyright"
