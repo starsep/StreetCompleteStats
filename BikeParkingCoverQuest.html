@@ -9,29 +9,6 @@
         src="scripts/sorttable.js"
         integrity="sha256-n3657FhpVO0BrpRmnXeQho7yfKvMVBh0QcoYkQr2O8w="
     ></script>
-    <script>
-        function preferredLanguage() {
-            for (const lang of navigator.languages) {
-                if (lang.startsWith("en")) {
-                    return "en";
-                }
-                if (lang.startsWith("pl")) {
-                    return "pl";
-                }
-            }
-            return "en";
-        }
-        function translateContent() {
-            const lang = preferredLanguage();
-            document.documentElement.lang = lang;
-            if (lang === "pl") {
-                document.querySelectorAll("[data-pl]").forEach((element) => {
-                    element.textContent = element.getAttribute("data-pl");
-                });
-            }
-        }
-        translateContent();
-    </script>
 </head>
 
     <body>
@@ -480,17 +457,17 @@
             </tr>
             
             <tr>
-                <td><a href="pila.html">Piła</a></td>
-                <td>3%</td>
-                <td>2</td>
-                <td>54</td>
-            </tr>
-            
-            <tr>
                 <td><a href="gryfino.html">Gryfino</a></td>
                 <td>40%</td>
                 <td>2</td>
                 <td>5</td>
+            </tr>
+            
+            <tr>
+                <td><a href="pila.html">Piła</a></td>
+                <td>3%</td>
+                <td>2</td>
+                <td>54</td>
             </tr>
             
             <tr>
@@ -620,17 +597,17 @@
             </tr>
             
             <tr>
-                <td><a href="elblag.html">Elbląg</a></td>
-                <td>1%</td>
-                <td>1</td>
-                <td>61</td>
-            </tr>
-            
-            <tr>
                 <td><a href="bartoszyce.html">Bartoszyce</a></td>
                 <td>7%</td>
                 <td>1</td>
                 <td>14</td>
+            </tr>
+            
+            <tr>
+                <td><a href="elblag.html">Elbląg</a></td>
+                <td>1%</td>
+                <td>1</td>
+                <td>61</td>
             </tr>
             
             <tr>
@@ -809,17 +786,17 @@
             </tr>
             
             <tr>
-                <td><a href="kalisz.html">Kalisz</a></td>
-                <td>1%</td>
-                <td>1</td>
-                <td>63</td>
-            </tr>
-            
-            <tr>
                 <td><a href="sieradz.html">Sieradz</a></td>
                 <td>0%</td>
                 <td>1</td>
                 <td>138</td>
+            </tr>
+            
+            <tr>
+                <td><a href="kalisz.html">Kalisz</a></td>
+                <td>1%</td>
+                <td>1</td>
+                <td>63</td>
             </tr>
             
             <tr>
@@ -914,17 +891,17 @@
             </tr>
             
             <tr>
-                <td><a href="slupsk.html">Słupsk</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>13</td>
-            </tr>
-            
-            <tr>
                 <td><a href="wejherowo.html">Wejherowo</a></td>
                 <td>0%</td>
                 <td>0</td>
                 <td>19</td>
+            </tr>
+            
+            <tr>
+                <td><a href="slupsk.html">Słupsk</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>13</td>
             </tr>
             
             <tr>
@@ -942,17 +919,17 @@
             </tr>
             
             <tr>
-                <td><a href="ketrzyn.html">Kętrzyn</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>2</td>
-            </tr>
-            
-            <tr>
                 <td><a href="elk.html">Ełk</a></td>
                 <td>0%</td>
                 <td>0</td>
                 <td>132</td>
+            </tr>
+            
+            <tr>
+                <td><a href="ketrzyn.html">Kętrzyn</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>2</td>
             </tr>
             
             <tr>
@@ -984,13 +961,6 @@
             </tr>
             
             <tr>
-                <td><a href="brodnica.html">Brodnica</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>14</td>
-            </tr>
-            
-            <tr>
                 <td><a href="dzialdowo.html">Działdowo</a></td>
                 <td>0%</td>
                 <td>0</td>
@@ -1005,10 +975,10 @@
             </tr>
             
             <tr>
-                <td><a href="ostroleka.html">Ostrołęka</a></td>
+                <td><a href="brodnica.html">Brodnica</a></td>
                 <td>0%</td>
                 <td>0</td>
-                <td>25</td>
+                <td>14</td>
             </tr>
             
             <tr>
@@ -1019,17 +989,17 @@
             </tr>
             
             <tr>
+                <td><a href="ostroleka.html">Ostrołęka</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>25</td>
+            </tr>
+            
+            <tr>
                 <td><a href="plonsk.html">Płońsk</a></td>
                 <td>0%</td>
                 <td>0</td>
                 <td>6</td>
-            </tr>
-            
-            <tr>
-                <td><a href="wyszkow.html">Wyszków</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>15</td>
             </tr>
             
             <tr>
@@ -1044,6 +1014,13 @@
                 <td>0%</td>
                 <td>0</td>
                 <td>5</td>
+            </tr>
+            
+            <tr>
+                <td><a href="wyszkow.html">Wyszków</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>15</td>
             </tr>
             
             <tr>
@@ -1208,13 +1185,6 @@
             </tr>
             
             <tr>
-                <td><a href="ostrow-wielkopolski.html">Ostrów Wielkopolski</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>38</td>
-            </tr>
-            
-            <tr>
                 <td><a href="turek.html">Turek</a></td>
                 <td>0%</td>
                 <td>0</td>
@@ -1222,10 +1192,24 @@
             </tr>
             
             <tr>
+                <td><a href="ostrow-wielkopolski.html">Ostrów Wielkopolski</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>38</td>
+            </tr>
+            
+            <tr>
                 <td><a href="skierniewice.html">Skierniewice</a></td>
                 <td>0%</td>
                 <td>0</td>
                 <td>36</td>
+            </tr>
+            
+            <tr>
+                <td><a href="piotrkow-trybunalski.html">Piotrków Trybunalski</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>10</td>
             </tr>
             
             <tr>
@@ -1240,13 +1224,6 @@
                 <td>0%</td>
                 <td>0</td>
                 <td>3</td>
-            </tr>
-            
-            <tr>
-                <td><a href="piotrkow-trybunalski.html">Piotrków Trybunalski</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>10</td>
             </tr>
             
             <tr>
@@ -1362,6 +1339,13 @@
             </tr>
             
             <tr>
+                <td><a href="nowy-sacz.html">Nowy Sącz</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>7</td>
+            </tr>
+            
+            <tr>
                 <td><a href="gorlice.html">Gorlice</a></td>
                 <td>0%</td>
                 <td>0</td>
@@ -1373,13 +1357,6 @@
                 <td>0%</td>
                 <td>0</td>
                 <td>14</td>
-            </tr>
-            
-            <tr>
-                <td><a href="nowy-sacz.html">Nowy Sącz</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>7</td>
             </tr>
             
             <tr>
@@ -1405,7 +1382,7 @@
             
         </table>
         <footer>
-    <span data-pl="Początek generowania">Generation start</span>: 2025-09-21 11:35. <span data-pl="Zajęło">Took</span> 15.172
+    <span data-pl="Początek generowania">Generation start</span>: 2025-09-21 11:41. <span data-pl="Zajęło">Took</span> 13.042
     <span data-pl="sekund">seconds</span>.
     <span data-pl="Źródło danych">Data source</span>:
     <a href="https://osm.org/copyright"
