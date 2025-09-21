@@ -19,14 +19,15 @@
             }
             return "en";
         }
-        function setPreferredLanguage() {
-            document.documentElement.lang = preferredLanguage();
+        function translateContent() {
+            const lang = preferredLanguage();
+            document.documentElement.lang = lang;
+            if (lang === "pl") {
+                document.querySelectorAll("[data-pl]").forEach((element) => {
+                    element.textContent = element.getAttribute("data-pl");
+                });
+            }
         }
-        setPreferredLanguage();
+        translateContent();
     </script>
-    <style>
-        *["data-pl"]:lang(pl) {
-            content: attr("data-pl");
-        }
-    </style>
 </head>
