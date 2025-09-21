@@ -541,17 +541,17 @@
             </tr>
             
             <tr>
-                <td><a href="skawina.html">Skawina</a></td>
-                <td>92%</td>
-                <td>13</td>
-                <td>14</td>
-            </tr>
-            
-            <tr>
                 <td><a href="myslowice.html">Mysłowice</a></td>
                 <td>68%</td>
                 <td>13</td>
                 <td>19</td>
+            </tr>
+            
+            <tr>
+                <td><a href="skawina.html">Skawina</a></td>
+                <td>92%</td>
+                <td>13</td>
+                <td>14</td>
             </tr>
             
             <tr>
@@ -891,13 +891,6 @@
             </tr>
             
             <tr>
-                <td><a href="dzialdowo.html">Działdowo</a></td>
-                <td>100%</td>
-                <td>7</td>
-                <td>7</td>
-            </tr>
-            
-            <tr>
                 <td><a href="wagrowiec.html">Wągrowiec</a></td>
                 <td>100%</td>
                 <td>7</td>
@@ -906,6 +899,13 @@
             
             <tr>
                 <td><a href="gniezno.html">Gniezno</a></td>
+                <td>100%</td>
+                <td>7</td>
+                <td>7</td>
+            </tr>
+            
+            <tr>
+                <td><a href="dzialdowo.html">Działdowo</a></td>
                 <td>100%</td>
                 <td>7</td>
                 <td>7</td>
@@ -1052,17 +1052,17 @@
             </tr>
             
             <tr>
-                <td><a href="ciechanow.html">Ciechanów</a></td>
-                <td>100%</td>
-                <td>5</td>
-                <td>5</td>
-            </tr>
-            
-            <tr>
                 <td><a href="wyszkow.html">Wyszków</a></td>
                 <td>83%</td>
                 <td>5</td>
                 <td>6</td>
+            </tr>
+            
+            <tr>
+                <td><a href="ciechanow.html">Ciechanów</a></td>
+                <td>100%</td>
+                <td>5</td>
+                <td>5</td>
             </tr>
             
             <tr>
@@ -1382,7 +1382,7 @@
             
         </table>
         <footer>
-    <span data-pl="Początek generowania">Generation start</span>: 2025-09-21 11:41. <span data-pl="Zajęło">Took</span> 13.042
+    <span data-pl="Początek generowania">Generation start</span>: 2025-09-21 11:45. <span data-pl="Zajęło">Took</span> 12.264
     <span data-pl="sekund">seconds</span>.
     <span data-pl="Źródło danych">Data source</span>:
     <a href="https://osm.org/copyright"
@@ -1396,6 +1396,29 @@
     >.
     <span data-pl="Proszę tam zgłaszać błędy">Please report issues there</span>.
 </footer>
+<script>
+    function preferredLanguage() {
+        for (const lang of navigator.languages) {
+            if (lang.startsWith("en")) {
+                return "en";
+            }
+            if (lang.startsWith("pl")) {
+                return "pl";
+            }
+        }
+        return "en";
+    }
+    function translateContent() {
+        const lang = preferredLanguage();
+        document.documentElement.lang = lang;
+        if (lang === "pl") {
+            document.querySelectorAll("[data-pl]").forEach((element) => {
+                element.textContent = element.getAttribute("data-pl");
+            });
+        }
+    }
+    translateContent();
+</script>
 
     </body>
 </html>

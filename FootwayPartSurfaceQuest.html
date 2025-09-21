@@ -527,17 +527,17 @@
             </tr>
             
             <tr>
-                <td><a href="nowy-targ.html">Nowy Targ</a></td>
-                <td>50%</td>
-                <td>3</td>
-                <td>6</td>
-            </tr>
-            
-            <tr>
                 <td><a href="nowy-sacz.html">Nowy Sącz</a></td>
                 <td>6%</td>
                 <td>3</td>
                 <td>46</td>
+            </tr>
+            
+            <tr>
+                <td><a href="nowy-targ.html">Nowy Targ</a></td>
+                <td>50%</td>
+                <td>3</td>
+                <td>6</td>
             </tr>
             
             <tr>
@@ -842,17 +842,17 @@
             </tr>
             
             <tr>
-                <td><a href="gryfino.html">Gryfino</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>0</td>
-            </tr>
-            
-            <tr>
                 <td><a href="szczecinek.html">Szczecinek</a></td>
                 <td>0%</td>
                 <td>0</td>
                 <td>3</td>
+            </tr>
+            
+            <tr>
+                <td><a href="gryfino.html">Gryfino</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>0</td>
             </tr>
             
             <tr>
@@ -905,13 +905,6 @@
             </tr>
             
             <tr>
-                <td><a href="dzialdowo.html">Działdowo</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>6</td>
-            </tr>
-            
-            <tr>
                 <td><a href="brodnica.html">Brodnica</a></td>
                 <td>0%</td>
                 <td>0</td>
@@ -937,6 +930,13 @@
                 <td>0%</td>
                 <td>0</td>
                 <td>1</td>
+            </tr>
+            
+            <tr>
+                <td><a href="dzialdowo.html">Działdowo</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>6</td>
             </tr>
             
             <tr>
@@ -996,6 +996,13 @@
             </tr>
             
             <tr>
+                <td><a href="nowa-sol.html">Nowa Sól</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>47</td>
+            </tr>
+            
+            <tr>
                 <td><a href="zary.html">Żary</a></td>
                 <td>0%</td>
                 <td>0</td>
@@ -1007,13 +1014,6 @@
                 <td>0%</td>
                 <td>0</td>
                 <td>5</td>
-            </tr>
-            
-            <tr>
-                <td><a href="nowa-sol.html">Nowa Sól</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>47</td>
             </tr>
             
             <tr>
@@ -1164,17 +1164,17 @@
             </tr>
             
             <tr>
-                <td><a href="turek.html">Turek</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>21</td>
-            </tr>
-            
-            <tr>
                 <td><a href="kalisz.html">Kalisz</a></td>
                 <td>0%</td>
                 <td>0</td>
                 <td>2</td>
+            </tr>
+            
+            <tr>
+                <td><a href="turek.html">Turek</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>21</td>
             </tr>
             
             <tr>
@@ -1269,17 +1269,17 @@
             </tr>
             
             <tr>
-                <td><a href="raciborz.html">Racibórz</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>7</td>
-            </tr>
-            
-            <tr>
                 <td><a href="stalowa-wola.html">Stalowa Wola</a></td>
                 <td>0%</td>
                 <td>0</td>
                 <td>12</td>
+            </tr>
+            
+            <tr>
+                <td><a href="raciborz.html">Racibórz</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>7</td>
             </tr>
             
             <tr>
@@ -1353,17 +1353,17 @@
             </tr>
             
             <tr>
-                <td><a href="zakopane.html">Zakopane</a></td>
-                <td>0%</td>
-                <td>0</td>
-                <td>1</td>
-            </tr>
-            
-            <tr>
                 <td><a href="sanok.html">Sanok</a></td>
                 <td>0%</td>
                 <td>0</td>
                 <td>6</td>
+            </tr>
+            
+            <tr>
+                <td><a href="zakopane.html">Zakopane</a></td>
+                <td>0%</td>
+                <td>0</td>
+                <td>1</td>
             </tr>
             
             <tr>
@@ -1382,7 +1382,7 @@
             
         </table>
         <footer>
-    <span data-pl="Początek generowania">Generation start</span>: 2025-09-21 11:41. <span data-pl="Zajęło">Took</span> 13.042
+    <span data-pl="Początek generowania">Generation start</span>: 2025-09-21 11:45. <span data-pl="Zajęło">Took</span> 12.264
     <span data-pl="sekund">seconds</span>.
     <span data-pl="Źródło danych">Data source</span>:
     <a href="https://osm.org/copyright"
@@ -1396,6 +1396,29 @@
     >.
     <span data-pl="Proszę tam zgłaszać błędy">Please report issues there</span>.
 </footer>
+<script>
+    function preferredLanguage() {
+        for (const lang of navigator.languages) {
+            if (lang.startsWith("en")) {
+                return "en";
+            }
+            if (lang.startsWith("pl")) {
+                return "pl";
+            }
+        }
+        return "en";
+    }
+    function translateContent() {
+        const lang = preferredLanguage();
+        document.documentElement.lang = lang;
+        if (lang === "pl") {
+            document.querySelectorAll("[data-pl]").forEach((element) => {
+                element.textContent = element.getAttribute("data-pl");
+            });
+        }
+    }
+    translateContent();
+</script>
 
     </body>
 </html>

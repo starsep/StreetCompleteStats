@@ -1382,7 +1382,7 @@
             
         </table>
         <footer>
-    <span data-pl="Początek generowania">Generation start</span>: 2025-09-21 11:41. <span data-pl="Zajęło">Took</span> 13.042
+    <span data-pl="Początek generowania">Generation start</span>: 2025-09-21 11:45. <span data-pl="Zajęło">Took</span> 12.264
     <span data-pl="sekund">seconds</span>.
     <span data-pl="Źródło danych">Data source</span>:
     <a href="https://osm.org/copyright"
@@ -1396,6 +1396,29 @@
     >.
     <span data-pl="Proszę tam zgłaszać błędy">Please report issues there</span>.
 </footer>
+<script>
+    function preferredLanguage() {
+        for (const lang of navigator.languages) {
+            if (lang.startsWith("en")) {
+                return "en";
+            }
+            if (lang.startsWith("pl")) {
+                return "pl";
+            }
+        }
+        return "en";
+    }
+    function translateContent() {
+        const lang = preferredLanguage();
+        document.documentElement.lang = lang;
+        if (lang === "pl") {
+            document.querySelectorAll("[data-pl]").forEach((element) => {
+                element.textContent = element.getAttribute("data-pl");
+            });
+        }
+    }
+    translateContent();
+</script>
 
     </body>
 </html>
