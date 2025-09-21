@@ -7,27 +7,4 @@
         src="scripts/sorttable.js"
         integrity="sha256-n3657FhpVO0BrpRmnXeQho7yfKvMVBh0QcoYkQr2O8w="
     ></script>
-    <script>
-        function preferredLanguage() {
-            for (const lang of navigator.languages) {
-                if (lang.startsWith("en")) {
-                    return "en";
-                }
-                if (lang.startsWith("pl")) {
-                    return "pl";
-                }
-            }
-            return "en";
-        }
-        function translateContent() {
-            const lang = preferredLanguage();
-            document.documentElement.lang = lang;
-            if (lang === "pl") {
-                document.querySelectorAll("[data-pl]").forEach((element) => {
-                    element.textContent = element.getAttribute("data-pl");
-                });
-            }
-        }
-        translateContent();
-    </script>
 </head>
