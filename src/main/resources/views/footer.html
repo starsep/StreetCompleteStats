@@ -1,5 +1,16 @@
 <footer>
-    Początek generowania: {{ startTime }}. Zajęło {{ generationSeconds }} sekund.
-    Źródło danych: <a href="https://osm.org/copyright/pl">© autorzy OpenStreetMap</a>.
-    Kod na <a href="https://github.com/starsep/StreetCompleteStats">GitHubie</a>. Proszę tam zgłaszać błędy w skrypcie.
+    <span data-pl="Początek generowania">Generation start</span>: {{ startTime
+    }}. <span data-pl="Zajęło">Took</span> {{ generationSeconds }}
+    <span data-pl="sekund">seconds</span>.
+    <span data-pl="Źródło danych">Data source</span>:
+    <a href="https://osm.org/copyright"
+        >©
+        <span data-pl="autorzy OpenStreetMap"
+            >OpenStreetMap contributors</span
+        ></a
+    >. <span data-pl="Code at">Kod na</span>
+    <a href="https://github.com/starsep/StreetCompleteStats" data-pl="GitHubie"
+        >GitHub</a
+    >.
+    <span data-pl="Proszę tam zgłaszać błędy">Please report issues there</span>.
 </footer>

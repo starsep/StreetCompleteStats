@@ -1,26 +1,30 @@
-<!DOCTYPE html>
-<html lang="pl">
-{% include "head.html" %}
-<body>
-<h1>Wyniki {{ city.name }}</h1>
-<table class="sortable">
-    <thead>
-        <td>Ikona</td>
-        <td>Nazwa</td>
-        <td>Procent</td>
-        <td>Rozwiązane</td>
-        <td>Wszystkie</td>
-    </thead>
-    {% for quest, questStats in result %}
-    <tr>
-        <td><a href="{{ quest.name }}.html">{% include "questIcon.html" %}</a></td>
-        <td><a href="{{ quest.name }}.html">{{ quest.name }}</a></td>
-        <td>{{ "%d"|format(questStats.ratio * 100) }}%</td>
-        <td>{{ questStats.solved }}</td>
-        <td>{{ questStats.all }}</td>
-    </tr>
-    {% endfor %}
-</table>
-{% include "footer.html" %}
-</body>
+<!doctype html>
+<html lang="en">
+    {% include "head.html" %}
+    <body>
+        <h1><span data-pl="Wyniki">Results for</span> {{ city.name }}</h1>
+        <table class="sortable">
+            <thead>
+                <td data-pl="Ikona">Icon</td>
+                <td data-pl="Nazwa">Name</td>
+                <td data-pl="Procent">Percent</td>
+                <td data-pl="Rozwiązane">Solved</td>
+                <td data-pl="Wszystkie">All</td>
+            </thead>
+            {% for quest, questStats in result %}
+            <tr>
+                <td>
+                    <a href="{{ quest.name }}.html"
+                        >{% include "questIcon.html" %}</a
+                    >
+                </td>
+                <td><a href="{{ quest.name }}.html">{{ quest.name }}</a></td>
+                <td>{{ "%d"|format(questStats.ratio * 100) }}%</td>
+                <td>{{ questStats.solved }}</td>
+                <td>{{ questStats.all }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% include "footer.html" %}
+    </body>
 </html>

@@ -1,28 +1,26 @@
-<!DOCTYPE html>
-<html lang="pl">
-{% include "head.html" %}
-<body>
-<h1>
-    {% include "questIcon.html" %}&nbsp;{{ quest.name }}
-</h1>
-<table class="sortable">
-    <thead>
-    <tr>
-    <th>Nazwa</th>
-    <th>Procent</th>
-    <th>Rozwiązane</th>
-    <th>Wszystkie</th>
-    </tr>
-    </thead>
-    {% for city, questStats in result %}
-    <tr>
-        <td><a href="{{ city.slug }}.html">{{ city.name }}</a></td>
-        <td>{{ "%d"|format(questStats.ratio * 100) }}%</td>
-        <td>{{ questStats.solved }}</td>
-        <td>{{ questStats.all }}</td>
-    </tr>
-    {% endfor %}
-</table>
-{% include "footer.html" %}
-</body>
+<!doctype html>
+<html lang="en">
+    {% include "head.html" %}
+    <body>
+        <h1>{% include "questIcon.html" %}&nbsp;{{ quest.name }}</h1>
+        <table class="sortable">
+            <thead>
+                <tr>
+                    <th data-pl="Nazwa">Name</th>
+                    <th data-pl="Procent">Percent</th>
+                    <th data-pl="Rozwiązane">Solved</th>
+                    <th data-pl="Wszystkie">All</th>
+                </tr>
+            </thead>
+            {% for city, questStats in result %}
+            <tr>
+                <td><a href="{{ city.slug }}.html">{{ city.name }}</a></td>
+                <td>{{ "%d"|format(questStats.ratio * 100) }}%</td>
+                <td>{{ questStats.solved }}</td>
+                <td>{{ questStats.all }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% include "footer.html" %}
+    </body>
 </html>

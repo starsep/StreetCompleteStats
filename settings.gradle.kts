@@ -1,3 +1,2 @@
-
-rootProject.name = "StreetCompleteStats"
-
+rootProject.name =
+    "StreetCompleteStats"
